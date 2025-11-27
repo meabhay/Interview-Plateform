@@ -28,21 +28,14 @@ export async function handleLoginUser(
       };
     }
 
-    const result: any = await signIn("credentials", {
+    await signIn("credentials", {
       email: userData.email,
       password: userData.password,
       role: roleUpper,
-      redirect: false,
-      redirectTo: "/",
+      redirectTo: "/dashboard",
     });
 
-    if (!result || (result as any)?.error) {
-      return {
-        success: false,
-        errors: { general: "Invalid email, password, or role" },
-      };
-    }
-
+    // If signIn doesn't redirect (shouldn't reach here on success)
     return { success: true };
   } catch (err) {
     console.log(err);
