@@ -12,8 +12,8 @@ const Footer = () => {
             <div className='flex flex-col md:flex-row items-center gap-20'>
                 <div className='flex flex-col gap-3'>
                     <h1 className='text-xl text-blue-200'>Contact us</h1>
-                    <span>Email: yuvaraj2selvam@gmail.com</span>
-                    <span>Name: yuvaraj s</span>
+                    <span>Email: support.takeint@gmail.com</span>
+                    <span>Name: Takeint</span>
                     <span>Country: India</span>
                 </div>
                 {/* <div className='flex-1 h-full'>
@@ -27,7 +27,7 @@ const Footer = () => {
             </div>
             <hr />
             <div className='md:text-left text-center'>
-                <span >2025 takeInt - Made with <span className='underline'>NextJs & Vapi</span> by <span className='underline'>yuvaraj s</span></span>
+                <span >2025 takeInt - Made with <span className='underline'>NextJs & Vapi</span> by <span className='underline'>Takeint Team</span></span>
             </div>
         </footer>
     )
