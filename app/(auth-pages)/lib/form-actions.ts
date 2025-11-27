@@ -6,6 +6,7 @@ import { signIn, signOut } from "../auth";
 import { AuthError } from "next-auth";
 import { CreateNewUser, getUserByEmail } from "@/app/lib/users";
 import { FormState } from "@/app/components/auth/auth-form";
+import { redirect } from "next/navigation";
 
 export async function handleLoginUser(
   prevState: FormState,
@@ -28,17 +29,33 @@ export async function handleLoginUser(
       };
     }
 
-    await signIn("credentials", {
+    const result = await signIn("credentials", {
       email: userData.email,
       password: userData.password,
       role: roleUpper,
-      redirectTo: "/dashboard",
+      redirect: false,
     });
 
-    // If signIn doesn't redirect (shouldn't reach here on success)
-    return { success: true };
+    // Check if sign-in failed
+    if (result?.error) {
+      return {
+        success: false,
+        errors: {
+          general: "Invalid email, password, or role",
+        },
+      };
+    }
+
+    // If we reach here, authentication succeeded
+    redirect("/dashboard");
   } catch (err) {
-    console.log(err);
+    console.error("Login error:", err);
+    
+    // Check if it's a redirect error (which means success)
+    if ((err as any)?.digest?.includes('NEXT_REDIRECT')) {
+      throw err; // Re-throw to allow the redirect
+    }
+    
     if (err instanceof z.ZodError) {
       const fieldErrors: Record<string, string> = {};
       Object.entries(err.flatten().fieldErrors).forEach(([field, messages]) => {
