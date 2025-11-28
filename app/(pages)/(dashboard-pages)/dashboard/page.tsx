@@ -7,6 +7,7 @@ import InterviewHistory from "@/app/components/dashboard/tabs/interview-history"
 import HRUsersTab from "@/app/components/dashboard/tabs/hr-users";
 import HRReportsTab from "@/app/components/dashboard/tabs/hr-reports";
 import HrScheduleInterview from "@/app/components/dashboard/tabs/hr-schedule-interview";
+import Link from "next/link";
 import HRDashboardTab from "@/app/components/dashboard/tabs/hr-dashboard";
 import { auth } from "@/app/(auth-pages)/auth";
 import { getDashboardData, getHRDashboardData } from "@/app/dashboard/actions";
