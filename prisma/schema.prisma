@@ -65,6 +65,7 @@ model Interview {
   isCompleted     Boolean?           @default(false)
   questions       String[]
   feedBack        InterviewFeedback?
+  conversation    Json? 
   
   // Scheduling fields
   isScheduled     Boolean?           @default(false)
